@@ -1,0 +1,65 @@
+<!--
+  Copyright 2013,2014 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<script type="text/x-red" data-template-name="npixleds">
+    <div class="form-row">
+        <label for="node-input-led"><i class="fa fa-circle"></i> LED</span></label>
+        <select type="text" id="node-input-led" style="width: 180px;">
+            <option value="15" </i>COM0 - LED0_GREEN</option>
+            <option value="16" </i>COM0 - LED0_RED</option>
+            <option value="22" </i>COM1 - LED1_GREEN</option>
+            <option value="37" </i>COM1 - LED1_RED</option>
+         </select>
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    
+</script>
+
+<script type="text/x-red" data-help-name="npixleds">
+    <p>Controls four LEDs of LED supporting NPIX modules.</p>
+    <p>Data: set dynamically using the <code>msg.payload</code> in the input message as numbered value 0 to clear and 1 to set an LED.</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('npixleds',{
+        category: 'netpi',
+        defaults: {
+            led: {value:"15"},
+            name: {value: ""}
+        },
+        color:"#0087C9",
+        inputs:1,
+        outputs:0,
+        icon: "light.png",
+        paletteLabel: "npix leds",
+        align: "left",
+        label: function() {
+           var na = "";
+           if (this.led === "15") { na = "COM0 - LED0_GREEN"; }
+           if (this.led === "16") { na = "COM0 - LED0_RED"; }
+           if (this.led === "22") { na = "COM1 - LED1_GREEN"; }
+           if (this.led === "37") { na = "COM1 - LED1_RED"; }
+           return this.name||na;
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
