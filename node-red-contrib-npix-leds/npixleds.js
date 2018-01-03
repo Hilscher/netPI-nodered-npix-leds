@@ -1,21 +1,7 @@
 module.exports = function(RED) {
     "use strict";
     var fs = require('fs');    
-
-    var gpio;
-    try {
-      var cpu = fs.readFileSync("/proc/cpuinfo").toString();
-      if (cpu.indexOf(": BCM") !== -1) {
-          gpio = require('rpi-gpio');
-      }
-    } catch (error) {
-    
-    }
-
-    if (typeof (gpio) === 'undefined') {
-      RED.log.warn("[npixleds] No gpio features available");
-    }
-
+    var gpio = require('rpi-gpio');
 
     // NPIX LEDs node 
     function npixledsNode(n) {
@@ -25,20 +11,22 @@ module.exports = function(RED) {
       var node = this;
 
       gpio.setup(parseInt(node.led), gpio.DIR_HIGH, function (err) {
-        if (err) RED.log.warn("[npixleds] Setting GPIO to output failed");
-      });
-
-      node.on("input", function(msg) {
-        var led = node.led;
-        if( msg.payload === 0) {
-          gpio.write(parseInt(led), true);
+        if (err)  { 
+            RED.log.warn("[npixleds] Setting GPIO to output failed");
         } else {
-          gpio.write(parseInt(led), false);
-        }
-      });
+          node.on("input", function(msg) {
+            var led = node.led;
+            if( msg.payload === 0) {
+              gpio.write(parseInt(led), true);
+            } else {
+              gpio.write(parseInt(led), false);
+            }
+          });
 
-      node.on("close", function() {
-      
+          node.on("close", function() {
+
+          });
+        }
       });
     }
     RED.nodes.registerType("npixleds", npixledsNode);
