@@ -16,7 +16,7 @@ To allow the access to the Node-RED programming over a web browser the container
 
 ##### Privileged mode
 
-The node *npix leds* controls the NPIX LED signals across the GPIOs 22,23,25 and 26. Only the privileged mode option lifts the enforced container limitations to allow usage of GPIOs in a container.
+The node *npix leds* controls the NPIX LED signals across the GPIOs 22,23,25 and 26. Only an enabled privileged mode option lifts the enforced container limitations to allow usage of GPIOs in a container.
 
 #### Getting started
 
