@@ -40,7 +40,7 @@ Pulling the image from Docker Hub may take up to 5 minutes.
 
 #### Accessing
 
-After starting the container open Node-RED in your browser with `http://<netpi's ip address>:<mapped host port>` e.g. `http://192.168.0.1:1880`. One extra node *rfid leds* in the nodes *netiot* library provides you access to the LEDs of all LED supporting NPIX extension modules. The node's info tab in Node-RED explains how to use it.
+After starting the container open Node-RED in your browser with `http://<netpi's ip address>:<mapped host port>` e.g. `http://192.168.0.1:1880`. One extra node *rfid leds* in the nodes *npix* library palette provides you access to the LEDs of all LED supporting NPIX extension modules. The node's info tab in Node-RED explains how to use it.
 
 #### Tags
 
