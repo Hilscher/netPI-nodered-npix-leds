@@ -6,11 +6,11 @@ RUN [ "cross-build-start" ]
 
 #labeling
 LABEL maintainer="netpi@hilscher.com" \ 
-      version="V0.9.2.0" \
+      version="V0.9.2" \
       description="Node-RED with npix leds node to control LEDs of LED supporting NPIX modules"
 
 #version
-ENV HILSCHERNETPI_NODERED_NPIX_LEDS_VERSION 0.9.2.0
+ENV HILSCHERNETPI_NODERED_NPIX_LEDS_VERSION 0.9.2
 
 #copy files
 COPY "./init.d/*" /etc/init.d/ 
